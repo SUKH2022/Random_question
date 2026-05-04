@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Team Pulse | Chair Edition</title>
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #0a0b10;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .scanner-frame {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+            padding: 40px;
+            border: 1px solid var(--neon-blue);
+            background: rgba(0, 243, 255, 0.05);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .status-bar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 0.7rem;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        #display-area {
+            font-size: 1.4rem;
+            min-height: 120px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #fff;
+        }
+
+        .btn-glitch {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            position: relative;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .btn-glitch:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
+
+        /* Scanning Line Effect */
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 243, 255, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            animation: move 3s linear infinite;
+            display: none;
+        }
+
+        @keyframes move {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="scanner-frame">
+    <div class="scanline" id="scanline"></div>
+    <div class="status-bar">System Status: Awaiting Input...</div>
+    <h1>Team Intelligence Probe</h1>
+    
+    <div id="display-area">
+        [ SYSTEM READY ]<br>
+        Click to initiate the icebreaker protocol.
+    </div>
+
+    <button class="btn-glitch" onclick="runSequence()">Execute Randomizer</button>
+</div>
+
+<script>
+    const questions = [
+        "You've been transmigrated into a Sci-Fi movie. What's your role: The Hero, The Tech-Support, or The Villain?",
+        "If you could use Python to automate one conversation you're tired of having, which one?",
+        "What's one tech trend you think is 100% 'Over-Hyped' right now?",
+        "In the battle of 'Human Intuition' vs 'Data Analytics,' who wins for our team today?"
+    ];
+
+    function runSequence() {
+        const display = document.getElementById('display-area');
+        const scanline = document.getElementById('scanline');
+        const statusBar = document.querySelector('.status-bar');
+        
+        // Show scanning effect
+        scanline.style.display = 'block';
+        display.innerHTML = "SCANNING TEAM METADATA...";
+        statusBar.innerText = "Status: Processing Data...";
+
+        setTimeout(() => {
+            scanline.style.display = 'none';
+            const randomIdx = Math.floor(Math.random() * questions.length);
+            display.innerHTML = `> ${questions[randomIdx]}`;
+            statusBar.innerText = "Status: Output Generated";
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
